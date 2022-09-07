@@ -5,87 +5,65 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/56372b5934.js" crossorigin="anonymous"></script>
     <title>Pomodoro Timer</title>
-
-    <style>
-        /* Palet de Cores
-        #645CAA
-        #A084CA
-        #BFACE0
-        #EBC7E8 */
-
-        * {
-            margin: 0;
-            padding: 0;
-            border: 0;
-            font-family: 'roboto', sans-serif;
-        }
-
-        body {
-            background-color: #645CAA;
-        }
-
-        h1 {
-            text-align: center;
-            margin: 50px;
-            color: #BFACE0;
-        }
-
-        .circle {
-            width: 300px;
-            height: 300px;
-            border: solid 10px #EBC7E8;
-            border-radius: 50%;
-            display: block;
-            margin: auto;
-        }
-
-        .timer {
-            display: block;
-            margin: auto;
-            text-align: center;
-            line-height: 300px;
-        }
-
-        p {
-            display: inline;
-            font-weight: bolder;
-            font-size: 50px;
-            color: #EBC7E8;
-        }
-
-        .play {
-            display: block;
-            margin: auto;
-            margin-top: 30px;
-            text-align: center;
-            border-top: 25px solid #645CAA;
-            border-bottom: 25px solid #645CAA;
-            border-left: 50px solid #BFACE0;
-            height: 0px;
-        }
-    </style>
 
 </head>
 
 <body>
     <h1>POMODORO</h1>
 
-    <div class="circle">
-        <div class="timer">
-            <p class="minutes">25</p>
-            <p>:</p>
-            <p class="seconds">00</p>
+    <div name="form_main">
+        <div class="circle">
+            <div class="timer">
+                <p id="minuto">00</p>
+                <p>:</p>
+                <p id="segundo">00</p>
+            </div>
+        </div>
+        <div class="config">
+            <div class="buttons">
+                <button onclick="start()" class="play"><i class="fa-solid fa-play fa-4x"></i></button>
+
+                <button onclick="reset()" class="reset"><i
+                        class="fa-sharp fa-solid fa-arrow-rotate-left fa-4x"></i></button>
+            </div>
         </div>
     </div>
 
-    <button class="play"></button>
-
-
-
+    <footer class="rodape">
+        <p class="copy">Todos os direitos reservados a <strong><em>Leonardo Lima</em></strong> &copy;Copyright</p>
+        <div class="redes">
+            <i class="fa-brands fa-square-github fa-2x"></i>
+            <i class="fa-solid fa-square-envelope fa-2x"></i>
+        </div>
+    </footer>
 
     <script>
+        let segundos = 0;
+        let minutos = 0;
 
+        let acabou = 'pç'
+
+            function segundo() {
+                //incrementa os segundos
+                segundos++;
+                if (segundos == 60) {
+                    //incrementa os minutos
+                    minutos++;
+                    //Zerar os segundos
+                    segundos = 0;
+                    //escreve os minutos
+                    document.getElementById('minuto').innerHTML = minutos
+                } else { //escreve os segundos
+                    document.getElementById('segundo').innerHTML = segundos
+                }
+            }
+       
+            setInterval(function start() { segundo() }, 10)
+
+        
     </script>
 </body>
 
